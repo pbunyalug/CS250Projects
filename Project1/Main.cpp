@@ -71,11 +71,13 @@ int main()
 	cout << endl;
 
 	cout << "...courseIsCompleted(BIO, 234): ";
-	student1.courseIsCompleted("BIO", 234) ? cout << "Course is completed." : cout << "Course is incomplete.";
+	student1.courseIsCompleted("BIO", 234) ? 
+		cout << "Course is completed." : cout << "Course is incomplete.";
 	cout << endl;
 
 	cout << "...courseIsCompleted(CS, 250): ";
-	student1.courseIsCompleted("CS", 250) ? cout << "Course is completed." : cout << "Course is incomplete.";
+	student1.courseIsCompleted("CS", 250) ?
+		cout << "Course is completed." : cout << "Course is incomplete.";
 	cout << endl;
 
 	cout << "printName: ";
