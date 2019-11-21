@@ -59,22 +59,22 @@ double Student::getUnitsCompleted() const
 // getGpa
 double Student::getGpa() const
 {
-	double unitsAwarded = 0;
+	double gpa = 0;
 	for (auto i : coursesCompleted)
 	{
 		switch (i.second)
 		{
 		case 'A':
-			unitsAwarded += i.first.getCourseUnits();
+			gpa += i.first.getCourseUnits() * 4;
 			break;
 		case 'B':
-			unitsAwarded += i.first.getCourseUnits() * 0.75;
+			gpa += i.first.getCourseUnits() * 3;
 			break;
 		case 'C':
-			unitsAwarded += i.first.getCourseUnits() * 0.50;
+			gpa += i.first.getCourseUnits() * 2;
 			break;
 		case 'D':
-			unitsAwarded += i.first.getCourseUnits() * 0.25;
+			gpa += i.first.getCourseUnits();
 			break;
 		case 'F':
 			break;
@@ -82,7 +82,7 @@ double Student::getGpa() const
 			cout << "Invalid Course Grade" << endl;
 		}
 	}
-	return unitsAwarded / getUnitsCompleted();
+	return gpa / getUnitsCompleted();
 }
 
 // isTuitionPaid
@@ -118,7 +118,7 @@ void Student::printStudentInfo() const
 {
 	cout << "Student Name: ";
 	printName();
-	cout << endl << endl;
+	cout << endl;
 
 	cout << "Student ID: " << studentID << endl;
 	cout << "Number of courses completed: " << getNumberOfCourses() << endl << endl;
@@ -128,27 +128,24 @@ void Student::printStudentInfo() const
 	{
 		for (auto i : coursesCompleted)
 		{
-			cout << fixed << showpoint << setprecision(2) << i.first.getCoursePrefix()
+			cout << fixed << showpoint << setprecision(2) << setw(3) << i.first.getCoursePrefix()
 				<< " " << i.first.getCourseNo() << "    " << i.first.getCourseUnits()
-				<< "        " << i.second << endl << endl;
-
-			cout << "Total number of unit hours: " << getUnitsCompleted() << endl;
-			cout << "Current Term GPA: " << getGpa() << endl << endl;
+				<< "       " << i.second << endl;
 		}
+		cout << "Total number of unit hours: " << getUnitsCompleted() << endl;
+		cout << "Current Term GPA: " << getGpa() << endl << endl;
 	}
 	else
 	{
 		for (auto i : coursesCompleted)
 		{
-			cout << fixed << showpoint << setprecision(2) << i.first.getCoursePrefix()
+			cout << fixed << showpoint << setprecision(2) << setw(3) << i.first.getCoursePrefix()
 				<< " " << i.first.getCourseNo() << "    " << i.first.getCourseUnits()
-				<< "        " << "***" << endl << endl;
-
-			cout << "Total number of unit hours: " << getUnitsCompleted() << endl;
-			cout << "Current Term GPA: " << getGpa() << endl << endl;
+				<< "       " << "***" << endl;
 		}
+		cout << "Total number of unit hours: " << getUnitsCompleted() << endl;
+		cout << "*** Grades are being held for not paying the tuition. ***" << endl << endl;
 	}
-
 	cout << "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-" << endl;
 }
 
